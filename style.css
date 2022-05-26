@@ -21,7 +21,9 @@ button
 
 canvas
 {
-    border: 20px solid white;
+    border: 5px solid white;
+    border-radius: 20px;
     box-shadow: 5px 5px 5px gray;
+    margin-top: 100px;
 }
 

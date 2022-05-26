@@ -1,0 +1,27 @@
+body
+{
+    background-image: URL("background.webp");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#header
+{
+    background-color: #E9D5CA;
+    padding: 10px;
+    padding-bottom: 20px;
+}
+
+button
+{
+    background-color: #827397 !important;
+    border: 2px solid #827397 !important;
+}
+
+canvas
+{
+    border: 20px solid white;
+    box-shadow: 5px 5px 5px gray;
+}
+

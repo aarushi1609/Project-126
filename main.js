@@ -1,6 +1,11 @@
 peter_pan = "";
 frozen = "";
 
+leftWristX = 0;
+leftWristY = 0;
+rightWristX = 0;
+rightWristY = 0;
+
 function setup()
 {
     canvas = createCanvas(500, 400);
@@ -8,6 +13,28 @@ function setup()
 
     video = createCapture(VIDEO);
     video.hide();
+
+    Posenet = ml5.poseNet(video, modelLoaded);
+    Posenet.on("pose", gotResults);
+}
+
+function modelLoaded()
+{
+    console.log("Posenet is intialized");
+}
+
+function gotResults(results)
+{
+    if(results.length > 0)
+    {
+        console.log(results);
+        leftWristX = results[0].pose.leftWrist.x;
+        rightWristX = results[0].pose.rightWrist.x;
+        leftWristY = results[0].pose.leftWrist.y;
+        rightWristY = results[0].pose.rightWrist.y;
+        console.log("Left Wrist: ", leftWristX, leftWristY);
+        console.log("Right Wrist: ", rightWristX, rightWristY);
+    }
 }
 
 function preload()

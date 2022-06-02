@@ -5,6 +5,8 @@ leftWristX = 0;
 leftWristY = 0;
 rightWristX = 0;
 rightWristY = 0;
+score_leftWrist = 0;
+song1_playing = "";
 
 function setup()
 {
@@ -34,6 +36,8 @@ function gotResults(results)
         rightWristY = results[0].pose.rightWrist.y;
         console.log("Left Wrist: ", leftWristX, leftWristY);
         console.log("Right Wrist: ", rightWristX, rightWristY);
+        score_leftWrist = results[0].pose.keypoints[9].score;
+        console.log("Score Left: ", score_leftWrist);
     }
 }
 
@@ -46,4 +50,18 @@ function preload()
 function draw()
 {
     image(video, 0, 0, 500, 400);
+    fill("red");
+    song1_playing = peter_pan.isPlaying();
+    console.log(song1_playing);
+    if(score_leftWrist > 0.2)
+    {
+        circle(leftWristX, leftWristY, 30);
+        frozen.stop();
+        if(song1_playing == false)
+    {
+        peter_pan.play();
+        document.getElementById("song_name").innerHTML = "Song Name is Peter Pan";
+    }
+    }
+    
 }

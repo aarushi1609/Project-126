@@ -7,6 +7,8 @@ rightWristX = 0;
 rightWristY = 0;
 score_leftWrist = 0;
 song1_playing = "";
+score_rightWrist = 0;
+song2_playing = "";
 
 function setup()
 {
@@ -37,7 +39,9 @@ function gotResults(results)
         console.log("Left Wrist: ", leftWristX, leftWristY);
         console.log("Right Wrist: ", rightWristX, rightWristY);
         score_leftWrist = results[0].pose.keypoints[9].score;
+        score_rightWrist = results[0].pose.keypoints[10].score;
         console.log("Score Left: ", score_leftWrist);
+        console.log("Score Right: ", score_rightWrist);
     }
 }
 
@@ -63,5 +67,17 @@ function draw()
         document.getElementById("song_name").innerHTML = "Song Name is Peter Pan";
     }
     }
-    
+
+    song2_playing = frozen.isPlaying();
+    console.log(song2_playing);
+    if(score_rightWrist > 0.2)
+    {
+        circle(rightWristX, rightWristY, 30)
+        peter_pan.stop();
+        if(song2_playing == false)
+        {
+            frozen.play();
+            document.getElementById("song_name").innerHTML = "Song Name is Let It Go by Frozen";
+        }
+    }
 }
